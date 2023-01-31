@@ -1,26 +1,4 @@
-<h1>Добавить книгу</h1>
+<h1 class="text-center">Добавить книгу</h1>
 
 
-<%= form_with model: @book do |f|%>
-
-  <div class="col-auto">
-    <%= f.label :title, "Название", class: "form-label" %>
-    <%= f.text_field :title, required: true, minlength: 2, placeholder: "Введите название книги", class:'form-control w-75'  %>
-  </div>
-
-  <div>
-    <%= f.label :author, "Автор", class: "form-label" %>
-    <%= f.text_field :author, required: true, minlength: 2, placeholder: "Введите автора книги", class:'form-control w-75'  %>
-  </div>
-
-  <div>
-    <%= f.label :description, "Описание книги", class: "form-label" %>
-    <%= f.text_area :description, required: true, minlength: 2, placeholder: "Описание", class:'form-control w-75' %>
-  </div>
-
-  <div>
-     <%= f.submit "Добавить", class: "btn btn-success w-150 mt-3" %>
-  </div>
- 
-
-<% end %>
+<%= render 'form' %>
