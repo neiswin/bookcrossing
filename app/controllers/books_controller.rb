@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :set_book!, only: %i[destroy edit show update]
 
   def create
     @book = Book.new book_params
@@ -12,14 +13,12 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find_by id: params[:id]
     @book.destroy
     flash[:success] = 'Book deleted!'
     redirect_to books_path
   end
 
   def edit
-    @book = Book.find_by id: params[:id]
   end
   
   def index
@@ -31,11 +30,11 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find_by id: params[:id]
+    @comment = @book.comments.build
+    @comments = Comment.order created_at: :desc
   end
   
   def update
-    @book = Book.find_by id: params[:id]
     if @book.update book_params
       flash[:success] = 'Book update!'
       redirect_to books_path
@@ -48,5 +47,9 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :author, :description)
+  end
+
+  def set_book!
+    @book = Book.find params[:id]
   end
 end
