@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :books do
-    resources :comments, only: %i[create destroy]
+    resources :comments, except: %i[new show]
   end
     
   root 'pages#index'

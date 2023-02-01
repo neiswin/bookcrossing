@@ -31,7 +31,7 @@ class BooksController < ApplicationController
 
   def show
     @comment = @book.comments.build
-    @comments = Comment.order created_at: :desc
+    @comments = @book.comments.order created_at: :desc
   end
   
   def update

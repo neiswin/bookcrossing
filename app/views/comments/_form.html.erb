@@ -1,0 +1,10 @@
+ 
+ 
+  <%= form_with model: [@book, @comment] do |c| %>
+    <div class="mb-2 mt-3">
+      <%= c.text_field :body, placeholder: "Enter comment here", class:'form-control'  %>
+    </div>
+    <div class="mb-2">
+      <%= c.submit "Send", class: "btn btn-success w-150 mt-3", data: { turbo:false } %>
+    </div>
+  <% end %>
