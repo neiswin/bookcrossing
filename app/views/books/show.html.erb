@@ -1,26 +1,27 @@
  
+ 
+ <% provide :page_title, "Book" %>
+
   <div class="card-body">
     <h5 class="card-title"><%= @book.title %></h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= @book.author %></h6>
-    <p class="card-text"><%= @book.description %></p>
+    <p class="card-text"><%= sanitize @book.description %></p>
   </div>
+
+  <div class="btn-group mt-2" role="group" aria-label="Basic example">
+    <%= button_to 'Edit', edit_book_path(@book), method: :get, class: "btn btn-warning m-1" %>
+    <%= button_to "Delete", book_path(@book),  method: :delete,  data: { confirm: 'Are you sure?'}, class: "btn btn-danger m-1"  %>
+  </div>   
 
 
 <hr class="my-3">
+
 <h2>Enter comment</h2>
 <%= render 'shared/errors', object: @comment %>
 
 <%= render 'comments/form' %>
 
   <h2 class="my-3">Comments</h2>
-  <div class="my-3">
-    <% @comments.each do |comment| %>
-    <time class="text-muted"><%= comment.created_at %></time>
-    <p class=""><%= comment.body %></p>
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <%= button_to 'Edit', edit_book_comment_path(@book,comment),method: :get, class: "btn btn btn-outline-secondary m-1 btn-sm" %>
-      <%= button_to "Delete", book_comment_path(@book, comment),  method: :delete,  data: { confirm: 'Are you sure?'}, class: "btn btn-outline-danger m-1 btn-sm"  %>
-    </div> 
-    
-    <% end %>
-  </div>
+
+<%= render partial: 'comments/comment', collection: @comments,
+as: :comment, locals: {book: @book} %>

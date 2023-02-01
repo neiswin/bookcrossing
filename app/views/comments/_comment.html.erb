@@ -1,0 +1,15 @@
+  <div class="my-3">
+    <% @comments.each do |comment| %>
+    <div class = "card mb-1">
+      <div class = "card-body">
+        <time class="text-muted"><%= comment.created_at %></time>
+        <p class=""><%= comment.body %></p>  
+        <hr>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <%= link_to 'Edit', edit_book_comment_path(@book,comment),method: :get, class: "btn btn btn-outline-secondary btn-sm" %>
+          <%= link_to "Delete", book_comment_path(@book, comment), 'data-turbo-method': :delete,  data: { confirm: 'Are you sure?'}, class: "btn btn-outline-danger btn-sm"  %>
+        </div>     
+      </div>
+    </div>
+    <% end %>
+  </div>

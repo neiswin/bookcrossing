@@ -1,6 +1,15 @@
+<% provide :page_title, "Books" %>
+
 <h1 class="text-center">All books</h1>
 
+
 <%= link_to "Добавить книгу", new_book_path, class:"btn btn-success btn-lg d-grid gap-2 col-6 mx-auto" %>
+
+<div class="mt-2">
+  <%== pagy_bootstrap_nav @pagy %>
+</div>
+
+
 
 <% @books.each do |book| %>
 
@@ -8,16 +17,20 @@
   <div class="card-body">
     <h5 class="card-title"><%= book.title %></h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= book.author %></h6>
-    <p class="card-text"><%= book.description %></p>
+    <p class="card-text"><%= truncate strip_tags(book.description), length: 100, omission: '... (continued)'  %></p>
   </div>
 
   <div class="btn-group" role="group" aria-label="Basic example">
-    <%= button_to 'Show', book_path(book), method: :get, class: "btn btn-success m-1"  %>
-    <%= button_to 'Edit', edit_book_path(book), method: :get, class: "btn btn-warning m-1" %>
-    <%= button_to "Delete", book_path(book),  method: :delete,  data: { confirm: 'Are you sure?'}, class: "btn btn-danger m-1"  %>
+    <%= link_to 'Show', book_path(book), method: :get, class: "btn btn-success"  %>
+    <%= link_to 'Edit', edit_book_path(book), method: :get, class: "btn btn-warning" %>
+    <%= link_to "Delete", book_path(book),  'data-turbo-method': :delete,  data: { confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
   </div> 
 
 </div>
 <% end %>
+
+<div class="mt-2">
+  <%== pagy_bootstrap_nav @pagy %>
+</div>
 
 

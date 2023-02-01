@@ -22,7 +22,8 @@ class BooksController < ApplicationController
   end
   
   def index
-    @books = Book.all
+    @pagy, @books = pagy Book.order(created_at: :desc) 
+    # @books = Book.all
   end
   
   def new
@@ -31,7 +32,7 @@ class BooksController < ApplicationController
 
   def show
     @comment = @book.comments.build
-    @comments = @book.comments.order created_at: :desc
+    @oagy, @comments = pagy @book.comments.order(created_at: :desc)
   end
   
   def update

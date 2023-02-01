@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookcrossing</title>
+    <title><%= full_title(yield(:page_title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,24 +16,39 @@
       <%= render 'shared/menu' %>
     </div>   
  
-    <main class="container-md mt-2 py-5 center">
-    
-    <% flash.each do |k , v| %>
-      <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
-    <% end %>
 
-      <%= yield %>
 
-    </main>
+  
+    <div class="row">
+      <div class="col-3 col-sm-2">
+      </div>
 
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li><%= link_to 'Главная', root_path, class: "nav-link px-2 text-black" %></li>
-            <li><%= link_to 'Про нас', about_path, class: "nav-link px-2 text-black"%></li>
-            <li><%= link_to 'Контакты', contact_path, class: "nav-link px-2 text-black"%></li>
-        </ul>
-        <p class="text-center text-muted">&copy; @nikolai_mikhaylov <%= Time.now.year %></p>
-    </footer>    
+      <div class="col-12 col-sm-8">
+        <main class="container-md mt-2 py-5 center">
+        
+        <% flash.each do |k , v| %>
+          <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
+        <% end %>
 
+          <%= yield %>
+
+        </main>        
+      </div>
+
+
+
+
+      <div class="col-3 col-sm-2">
+      </div>
+
+      <footer class="py-3 my-4">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+              <li><%= link_to 'Главная', root_path, class: "nav-link px-2 text-black" %></li>
+              <li><%= link_to 'Про нас', about_path, class: "nav-link px-2 text-black"%></li>
+              <li><%= link_to 'Контакты', contact_path, class: "nav-link px-2 text-black"%></li>
+          </ul>
+          <p class="text-center text-muted">&copy; @nikolai_mikhaylov <%= Time.now.year %></p>
+      </footer>  
+ 
   </body>
 </html>

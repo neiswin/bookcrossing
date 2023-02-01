@@ -15,7 +15,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    # comment = @book.comments.find params[:id]
     @comment.destroy
     flash[:success] = 'Comment deleted!'
     redirect_to book_path(@book)
