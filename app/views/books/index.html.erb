@@ -2,14 +2,14 @@
 
 <h1 class="text-center">All books</h1>
 
+<% if current_user %>
+  <%= link_to "Добавить книгу", new_book_path, class:"btn btn-success btn-lg d-grid gap-2 col-6 mx-auto" %>
+<% end %>
 
-<%= link_to "Добавить книгу", new_book_path, class:"btn btn-success btn-lg d-grid gap-2 col-6 mx-auto" %>
 
 <div class="mt-2">
   <%== pagy_bootstrap_nav @pagy %>
 </div>
-
-
 
 <% @books.each do |book| %>
 
@@ -20,7 +20,7 @@
     <p class="card-text"><%= truncate strip_tags(book.description), length: 100, omission: '... (continued)'  %></p>
   </div>
 
-  <div class="btn-group" role="group" aria-label="Basic example">
+  <div class="btn-group my-1 mx-1" role="group" aria-label="Basic example">
     <%= link_to 'Show', book_path(book), method: :get, class: "btn btn-success"  %>
     <%= link_to 'Edit', edit_book_path(book), method: :get, class: "btn btn-warning" %>
     <%= link_to "Delete", book_path(book),  'data-turbo-method': :delete,  data: { confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
