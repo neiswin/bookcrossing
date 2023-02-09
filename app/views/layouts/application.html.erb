@@ -12,9 +12,9 @@
 
   <body>
 
-    <div class="container-md mt-2">
+    <header class="container-md mt-2">
       <%= render 'shared/menu' %>
-    </div>   
+    </header>   
  
 
 
@@ -24,10 +24,12 @@
       </div>
 
       <div class="col-12 col-sm-8">
+      
+      
         <main class="container-md mt-2 py-5 center">
         
         <% flash.each do |k , v| %>
-          <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
+          <%= tag.div v, class: "alert alert-light", role: 'alert' %>
         <% end %>
 
           <%= yield %>
