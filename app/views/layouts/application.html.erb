@@ -15,42 +15,26 @@
     <header class="container-md mt-2">
       <%= render 'shared/menu' %>
     </header>   
- 
 
 
-  
-    <div class="row">
-      <div class="col-3 col-sm-2">
-      </div>
-
-      <div class="col-12 col-sm-8">
-      
-      
-        <main class="container-md mt-2 py-5 center">
-        
-        <% flash.each do |k , v| %>
-          <%= tag.div v, class: "alert alert-light", role: 'alert' %>
-        <% end %>
+    <div class="px-3 py-3 my-3 container-md mt-2">     
+            
+          <% flash.each do |k , v| %>
+            <%= tag.div v, class: "alert alert-success", role: 'alert' %>
+          <% end %>
 
           <%= yield %>
 
-        </main>        
-      </div>
+    </div>    
 
-
-
-
-      <div class="col-3 col-sm-2">
-      </div>
-
-      <footer class="py-3 my-4">
-          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-              <li><%= link_to 'Главная', root_path, class: "nav-link px-2 text-black" %></li>
-              <li><%= link_to 'Про нас', about_path, class: "nav-link px-2 text-black"%></li>
-              <li><%= link_to 'Контакты', contact_path, class: "nav-link px-2 text-black"%></li>
-          </ul>
-          <p class="text-center text-muted">&copy; @nikolai_mikhaylov <%= Time.now.year %></p>
-      </footer>  
+    <footer class="py-3 my-4 container-md">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li><%= link_to 'Главная', root_path, class: "nav-link px-2 text-black" %></li>
+        <li><%= link_to 'Про нас', about_path, class: "nav-link px-2 text-black"%></li>
+        <li><%= link_to 'Контакты', contact_path, class: "nav-link px-2 text-black"%></li>
+      </ul>
+      <p class="text-center text-muted">&copy; @nikolai_mikhaylov <%= Time.now.year %></p>
+    </footer>  
  
   </body>
 </html>

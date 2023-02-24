@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   
   def create
-    @comment = @book.comments.build comment_params
+    @comment = @book.comments.build comment_create_params
     if @comment.save
       flash[:success] = "Comment created!"
       redirect_to book_path(@book)
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update comment_params
+    if @comment.update comment_update_params
       flash[:success] = 'Comment update!'
       redirect_to book_path(@book)
     else
@@ -42,7 +42,12 @@ class CommentsController < ApplicationController
     @comment = @book.comments.find params[:id]
   end
 
-  def comment_params
+  def comment_create_params
+    params.require(:comment).permit(:body).merge(user_id: current_user.id)
+  end
+
+  def comment_update_params
     params.require(:comment).permit(:body)
   end
+
 end

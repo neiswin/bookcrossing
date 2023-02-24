@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, password_length: 8..128
   enum role: [:user, :moderator, :admin]
+
+  has_many :books, dependent: :destroy 
+  has_many :comments, dependent: :destroy 
   
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }

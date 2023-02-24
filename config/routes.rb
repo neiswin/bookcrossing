@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :books do
     resources :comments, except: %i[new show]
   end
+
+  resources :users, only: %i[index show]
     
   root 'pages#index'
 

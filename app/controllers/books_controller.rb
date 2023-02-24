@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book!, only: %i[destroy edit show update]
 
   def create
-    @book = Book.new book_params
+    @book = current_user.books.build book_params
     if @book.save
       flash[:success] = 'Book added!'
       redirect_to books_path
@@ -47,7 +47,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :description)
+    params.require(:book).permit(:title, :author, :description, :user_id)
   end
 
   def set_book!
